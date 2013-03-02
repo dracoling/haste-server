@@ -2,17 +2,22 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 
+
 var winston = require('winston');
 var connect = require('connect');
-var irc = require("irc");
-bot = new irc.Client("smrsh.net", "glue", { channels: ["#starfyre"],  server: "smrsh.net",  userName: "gluebot",  realName: "I eat paste",  botName: "glue",  debug: true});
-
-var DocumentHandler = require('./lib/document_handler');
-
 // Load the configuration and set some defaults
 var config = JSON.parse(fs.readFileSync('./config.js', 'utf8'));
-config.port = process.env.PORT || config.port || 7777;
-config.host = process.env.HOST || config.host || 'localhost';
+// Lets have a configuration file and then blindly override the values set in it.
+// This is a GREAT idea! 
+//config.port = process.env.PORT || config.port || 7777;
+//config.host = process.env.HOST || config.host || 'localhost';
+var irc = require("irc");
+bot = new irc.Client(config.irc.server, config.irc.botName, config.irc);
+bot.sendPaste = function (key) {
+  bot.say(config.irc.channels[0], config.irc.message + key);
+}
+var DocumentHandler = require('./lib/document_handler');
+
 
 // Set up the logger
 if (config.logging) {

@@ -25,7 +25,7 @@
 
   "storage": {
     "type": "redis",
-    "host": "0.0.0.0",
+    "host": "127.0.0.1",
     "port": 6379,
     "db": 2,
     "expire": 2592000
@@ -33,6 +33,15 @@
 
   "documents": {
     "about": "./about.md"
-  }
+  },
 
+  "irc": {
+    "channels": ["#starfyre"],  
+    "server": "smrsh.net",  
+    "userName": "gluebot",  
+    "realName": "I eat paste",  
+    "botName": "glue",  
+    "debug": true,
+    "message": "New paste at http://r.smrsh.net:7777/"
+  }
 }
