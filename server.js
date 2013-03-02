@@ -4,6 +4,8 @@ var fs = require('fs');
 
 var winston = require('winston');
 var connect = require('connect');
+var irc = require("irc");
+bot = new irc.Client("smrsh.net", "glue", { channels: ["#starfyre"],  server: "smrsh.net",  userName: "gluebot",  realName: "I eat paste",  botName: "glue",  debug: true});
 
 var DocumentHandler = require('./lib/document_handler');
 
@@ -138,3 +140,4 @@ connect.createServer(
 ).listen(config.port, config.host);
 
 winston.info('listening on ' + config.host + ':' + config.port);
+
